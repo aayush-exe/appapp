@@ -27,8 +27,8 @@ class Form1(Form1Template):
     anvil.server.call('set_data', name, genderBool)
     Notification(name + "::" + str(genderBool)).show()
     # Call your 'clear_inputs' method to clear the boxes
-    self.clear_inputs()
     self.column_panel_1_hide()
+    self.submit_hide()
     pass
 
   def column_panel_1_hide(self, **event_args):
