@@ -28,4 +28,5 @@ db_schema:
       admin_ui: {width: 200, order: 1}
       type: string
     title: convos
+uplink_visible: true
 renamed: true

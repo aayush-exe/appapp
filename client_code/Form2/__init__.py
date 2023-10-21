@@ -22,4 +22,13 @@ class Form2(Form2Template):
     """This method is called when the Button is shown on the screen"""
     pass
 
+  def submit_prompt_click(self, **event_args):
+    alert(self.text_area_1.text)
+    new_call = self.text_area_1.text
+    anvil.server.call('add_prompt', new_call)
+    add_to_text = anvil.server.call('get_text', new_call)
+    anvil.server.call('add_response', add_to_text)
+    pass
+
+
 

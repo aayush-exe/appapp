@@ -41,6 +41,7 @@ components:
         background: '', bold: false, underline: false, icon: ''}
       name: submit_prompt
       layout_properties: {grid_position: 'LDKCLN,VLHWSA'}
+      event_bindings: {click: submit_prompt_click}
   - type: Image
     properties: {role: null, vertical_align: center, height: '200', tooltip: '', border: '',
       foreground: '', visible: true, display_mode: fill_width, spacing_above: small,

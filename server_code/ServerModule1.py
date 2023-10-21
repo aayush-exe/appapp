@@ -7,9 +7,18 @@ isMale = False
 user_name = ""
 
 @anvil.server.callable
-def set_data(name, incomingBool):
-  user_name = name
-  isMale = incomingBool
+def add_prompt(response):
+  app_tables.convos.add_row(
+    pastConvos=response, 
+  )
+  return
+
+@anvil.server.callable
+def add_response(response):
+  app_tables.convos.add_row(
+    pastResponses=response, 
+  )
+  return
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
 #
