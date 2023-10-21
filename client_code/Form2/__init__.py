@@ -13,6 +13,8 @@ class Form2(Form2Template):
     self.panel1_copy.items = app_tables.convos.search()
     self.IntroPane.visible = True
     self.MainPane.visible = False
+    self.IngredPane.visible = False
+    self.recipes_button.visible = True
 
     # Any code you write here will run before the form opens.
 
@@ -25,23 +27,51 @@ class Form2(Form2Template):
     pass
 
   def submit_prompt_click(self, **event_args):
-    alert("I'm sending this through OpenAI, so it might take a while!! Bear with me, please... \n ~Misaki")
     
     new_call = self.text_area_1.text
+    self.text_area_1.text = ""
+    
     new_data_point = app_tables.convos.add_row(pastConvos=new_call)
     l = list(self.panel1.items) + [new_data_point]
     self.panel1.items = l
     
-    add_to_text = anvil.server.call('get_text', new_call)
+    ReadyToGo, add_to_text = anvil.server.call('get_text', new_call)
+    if (ReadyToGo):
+      self.recipes_button.visible = True
+      
     new_data_point_copy = app_tables.convos.add_row(pastResponses=add_to_text)
     m = list(self.panel1_copy.items) + [new_data_point_copy]
     self.panel1_copy.items = m
     pass
 
   def button_1_click(self, **event_args):
+    
+    name = self.name_input.text
+    alert("Hi, "+name+"! Excited to cook with you today!")
+    self.panel1_copy.items = self.panel1.items
+    self.panel1.items = self.panel1_copy.items
     self.IntroPane.visible = False
     self.MainPane.visible = True
+    
     pass
+
+  def back_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def clear_history_click(self, **event_args):
+    app_tables.convos.delete_all_rows()
+    self.panel1.items = []
+    self.panel1_copy.items = []
+    pass
+
+  def recipes_button_click(self, **event_args):    
+    self.MainPane.visible = False
+    self.IngredPane.visible = True
+    pass
+
+
+
 
 
 
