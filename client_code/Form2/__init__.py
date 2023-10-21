@@ -11,6 +11,8 @@ class Form2(Form2Template):
     self.init_components(**properties)
     self.panel1.items = app_tables.convos.search()
     self.panel1_copy.items = app_tables.convos.search()
+    self.IntroPane.visible = True
+    self.MainPane.visible = False
 
     # Any code you write here will run before the form opens.
 
@@ -23,12 +25,24 @@ class Form2(Form2Template):
     pass
 
   def submit_prompt_click(self, **event_args):
-    alert(self.text_area_1.text)
+    alert("I'm sending this through OpenAI, so it might take a while!! Bear with me, please... \n ~Misaki")
+    
     new_call = self.text_area_1.text
-    anvil.server.call('add_prompt', new_call)
+    new_data_point = app_tables.convos.add_row(pastConvos=new_call)
+    l = list(self.panel1.items) + [new_data_point]
+    self.panel1.items = l
+    
     add_to_text = anvil.server.call('get_text', new_call)
-    anvil.server.call('add_response', add_to_text)
+    new_data_point_copy = app_tables.convos.add_row(pastResponses=add_to_text)
+    m = list(self.panel1_copy.items) + [new_data_point_copy]
+    self.panel1_copy.items = m
     pass
+
+  def button_1_click(self, **event_args):
+    self.IntroPane.visible = False
+    self.MainPane.visible = True
+    pass
+
 
 
 

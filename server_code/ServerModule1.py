@@ -3,8 +3,12 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-isMale = False
 user_name = ""
+
+@anvil.server.callable
+def set_data(name):
+  user_name = name
+  return
 
 @anvil.server.callable
 def add_prompt(response):

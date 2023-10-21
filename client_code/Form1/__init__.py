@@ -23,16 +23,13 @@ class Form1(Form1Template):
   def button_1_click(self, **event_args):
   ##  set_data(self.name_input.text, incomingBool)
     name = self.name_input.text
-    genderBool = True if self.gender.selected_value == "Male" else False
-    anvil.server.call('set_data', name, genderBool)
-    Notification(name + "::" + str(genderBool)).show()
+    anvil.server.call('set_data', name)
     # Call your 'clear_inputs' method to clear the boxes
-    self.column_panel_1_hide()
-    self.submit_hide()
+    self.IntroPane.visible = False
     pass
 
   def column_panel_1_hide(self, **event_args):
-    """This method is called when the column panel is removed from the screen"""
+    
     pass
 
   def submit_hide(self, **event_args):
