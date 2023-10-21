@@ -1,13 +1,14 @@
-from ._anvil_designer import Form3Template
+from ._anvil_designer import Form2Template
 from anvil import *
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-class Form3(Form3Template):
+class Form2(Form2Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.panel1.items = app_tables.convos.search()
 
     # Any code you write here will run before the form opens.
