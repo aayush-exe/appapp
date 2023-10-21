@@ -2,11 +2,21 @@ container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
 components:
-- type: Label
-  properties: {}
-  name: label_1
-  layout_properties: {grid_position: 'GDIJIT,TMKEEX'}
-  data_bindings:
-  - {property: text, code: 'self.item[''pastConvos'']'}
+- type: ColumnPanel
+  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: small, spacing_above: small, col_widths: '{}', spacing_below: small,
+    background: ''}
+  name: outlined_card_1
+  layout_properties: {grid_position: 'DRDMJM,LLKNWJ'}
+  components:
+  - type: Label
+    properties: {role: body, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'ORJCFF,ZPRNSH'}
+    data_bindings:
+    - {property: text, code: 'self.item[''pastConvos'']'}
 is_package: true
 item_type: {table_id: 531693}
