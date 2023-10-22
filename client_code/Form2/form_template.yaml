@@ -74,7 +74,7 @@ components:
       name: panel1
       layout_properties: {grid_position: 'VLLXEO,BAWHLH'}
     - type: TextArea
-      properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: Talk here...,
+      properties: {role: outlined, align: left, height: 94, tooltip: '', placeholder: Talk here (include keyword "recipe" for a recipe),
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         auto_expand: true, font: '', spacing_above: small, spacing_below: small, italic: false,
         background: '', bold: false, underline: false}
@@ -164,13 +164,13 @@ components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Do you want me to send them to you? I don''t store these
-          anywhere, don''t worry!', font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+          anywhere, don''t worry! (these may not work if we''re rate limited, sorry!)',
+        font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+        italic: false, background: '', bold: false, underline: false, icon: ''}
       name: text_me_labe
       layout_properties: {grid_position: 'REBTYO,HJTZNB'}
     - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Phone number...,
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Phone Number,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
         background: '', bold: false, underline: false}
@@ -186,7 +186,7 @@ components:
       event_bindings: {hide: outlined_button_1_hide, show: outlined_button_1_show,
         click: back_button_click}
     - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Discord username...,
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Discord username...,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
         background: '', bold: false, underline: false}
