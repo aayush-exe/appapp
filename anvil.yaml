@@ -28,5 +28,16 @@ db_schema:
       admin_ui: {width: 200, order: 1}
       type: string
     title: convos
+  recipe_data:
+    client: none
+    server: full
+    columns:
+    - name: ingredients
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: instructions
+      admin_ui: {width: 200, order: 1}
+      type: string
+    title: recipe_data
 uplink_visible: true
 renamed: true
