@@ -14,7 +14,8 @@ class Form2(Form2Template):
     self.IntroPane.visible = True
     self.MainPane.visible = False
     self.IngredPane.visible = False
-    self.recipes_button.visible = True
+    self.recipes_button.visible = False
+    self.chat_image.source = 
 
     # Any code you write here will run before the form opens.
 
@@ -45,11 +46,14 @@ class Form2(Form2Template):
     pass
 
   def button_1_click(self, **event_args):
-    
     name = self.name_input.text
+    anvil.server.call('send_name', name)
+    
+    app_tables.convos.delete_all_rows()
+    self.panel1.items = []
+    self.panel1_copy.items = []
+
     alert("Hi, "+name+"! Excited to cook with you today!")
-    self.panel1_copy.items = self.panel1.items
-    self.panel1.items = self.panel1_copy.items
     self.IntroPane.visible = False
     self.MainPane.visible = True
     
@@ -65,7 +69,8 @@ class Form2(Form2Template):
     self.panel1_copy.items = []
     pass
 
-  def recipes_button_click(self, **event_args):    
+  def recipes_button_click(self, **event_args): 
+    alert("Hey, this might take a bit. Hang tight, please! \n~Misaki")
     self.MainPane.visible = False
     self.IngredPane.visible = True
     pass
