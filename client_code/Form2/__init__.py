@@ -4,17 +4,24 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+import time
+
+displayIngredients = True
 
 class Form2(Form2Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    
     self.panel1.items = app_tables.convos.search()
     self.panel1_copy.items = app_tables.convos.search()
     self.IntroPane.visible = True
     self.MainPane.visible = False
     self.IngredPane.visible = False
-    self.recipes_button.visible = False
+    self.recipes_button.visible = False    
+    self.chatter_label_copy_3.text = "Here's the ingredients!"
+    self.ingredients_list_display.visible = True
+    self.instructions_list_display.visible = False
     self.chat_image.source = anvil.server.call('get_image')
     self.recipe_image.source = anvil.server.call('get_image')
     
@@ -62,7 +69,9 @@ class Form2(Form2Template):
     pass
 
   def back_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
+    self.chatter_label_copy_3.text = "Here's the ingredients!"
+    self.ingredients_list_display.visible = True
+    self.instructions_list_display.visible = False
     pass
 
   def clear_history_click(self, **event_args):
@@ -72,13 +81,57 @@ class Form2(Form2Template):
     pass
 
   def recipes_button_click(self, **event_args): 
+    
+    alert("Hey, this might take a bit. Hang tight, please! \n~Misaki")
+    ingredientsList, instructionsList, maxLength = anvil.server.call("get_recipe")
+    
+    for i in range(maxLength):
+      if (len(ingredientsList)-1 < i):
+        newDataIn = ""
+      else:
+        newDataIn = ingredientsList[i]
+        
+      if (len(instructionsList)-1 < i):
+        newDataIns = ""
+      else:
+        newDataIns = instructionsList[i]
+      app_tables.recipe_data.add_row(ingredients=newDataIn, instructions=newDataIns)
+
+    time.sleep(1)
+    self.ingredients_list_display.items = app_tables.recipe_data.search()
+    self.instructions_list_display.items = app_tables.recipe_data.search()
+    self.MainPane.visible = False
+    self.IngredPane.visible = True
     app_tables.recipe_data.delete_all_rows()
     self.panel1.items = []
     self.panel1_copy.items = []
-    alert("Hey, this might take a bit. Hang tight, please! \n~Misaki")
-    self.MainPane.visible = False
-    self.IngredPane.visible = True
+    
     pass
+
+  def next_button_click(self, **event_args):
+    self.chatter_label_copy_3.text = "Here's the steps to make it!"
+    self.ingredients_list_display.visible = False
+    self.instructions_list_display.visible = True
+    pass
+
+  def restart_button_click(self, **event_args):
+    anvil.server.call('send_name',"")
+    app_tables.recipe_data.delete_all_rows()
+    app_tables.convos.delete_all_rows()
+    self.panel1.items = app_tables.convos.search()
+    self.panel1_copy.items = app_tables.convos.search()
+    self.IntroPane.visible = True
+    self.MainPane.visible = False
+    self.IngredPane.visible = False
+    self.recipes_button.visible = False    
+    self.chatter_label_copy_3.text = "Here's the ingredients!"
+    self.ingredients_list_display.visible = True
+    self.instructions_list_display.visible = False
+    self.chat_image.source = anvil.server.call('get_image')
+    self.recipe_image.source = anvil.server.call('get_image')
+    pass
+
+
 
 
 

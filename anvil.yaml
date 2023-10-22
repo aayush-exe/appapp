@@ -29,7 +29,7 @@ db_schema:
       type: string
     title: convos
   recipe_data:
-    client: none
+    client: full
     server: full
     columns:
     - name: ingredients
